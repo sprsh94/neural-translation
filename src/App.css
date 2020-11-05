@@ -1,0 +1,267 @@
+:root {
+  --background: rgba(238, 220, 204, 0.918);
+  --content-background: rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation */
+.App-header {
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 1em;
+}
+
+.nav-toggle {
+  display: none;
+}
+
+.nav-toggle-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  display: block;
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
+  position: relative;
+}
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: "";
+  position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+.navigation {
+  background: var(--background);
+  position: absolute;
+  text-align: left;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
+}
+
+.nav-list {
+  list-style: none;
+}
+
+.nav-item {
+  margin-bottom: 1em;
+  margin-left: 1em;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+}
+
+.nav-link:hover {
+  color: #000000;
+}
+
+.nav-toggle:checked ~ .navigation {
+  transform: scale(1, 1);
+}
+
+.nav-toggle:checked ~ .navigation .nav-link {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 300ms;
+}
+
+/* Main content*/
+.App-content {
+  padding-top: 3.5rem;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}
+
+.main-container {
+  background-color: whitesmoke;
+  width: 90%;
+  height: 75vh;
+  border-radius: 10px;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2), 0 0 50px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  width: 100%;
+  min-height: 35px;
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.result-container {
+  width: 100%;
+  height: 100%;
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-container {
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.input-value:empty:before {
+  content: attr(data-placeholder);
+}
+
+.input-value,
+.output {
+  background-color: var(--content-background);
+  min-height: 70%;
+  min-width: 80%;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 10px;
+}
+
+.input-submit {
+  min-width: 30%;
+  min-height: 10%;
+  margin: 0.5rem 0;
+}
+
+.separter {
+  display: block;
+  background: grey;
+  height: 2px;
+  width: 100%;
+  border-radius: 2px;
+  position: relative;
+}
+
+.output-container {
+  height: 50%;
+  display: grid;
+  place-items: center;
+}
+
+/* Desktop */
+@media screen and (min-width: 800px) {
+  /* Navigation */
+  .App-header {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+
+  .nav-toggle-label {
+    display: none;
+  }
+
+  .logo {
+    grid-column: 2 / 3;
+  }
+
+  .navigation {
+    all: unset;
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+  }
+
+  .nav-item {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  .nav-link {
+    opacity: 1;
+    position: relative;
+  }
+
+  .nav-link::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    bottom: -0.3em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 250ms;
+  }
+
+  .nav-link:hover::before {
+    transform: scale(1, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  /* Main content*/
+  .App-content {
+    padding-top: 4.5rem;
+  }
+
+  .main-container {
+    height: 45vh;
+  }
+
+  .result-container {
+    padding: 1em;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .input-container {
+    width: 50%;
+    height: 100%;
+  }
+
+  .separter {
+    display: block;
+    background: grey;
+    height: 100%;
+    width: 2px;
+    border-radius: 2px;
+    position: relative;
+  }
+
+  .output-container {
+    width: 50%;
+    height: 100%;
+  }
+}
